@@ -1,0 +1,13 @@
+[loadbalancer]
+lb01
+
+[webserver]
+app01
+
+[database]
+db01
+
+[control]
+# when starting ansible will try to ssh to every host in inventory file
+# but its not needed for control machine as its is on the same host
+control ansible_connection=local
