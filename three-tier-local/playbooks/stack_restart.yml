@@ -2,6 +2,7 @@
 # Bring stack down
 - hosts: loadbalancer
   become: true
+  gather_facts : false
   tasks:
     - service: name=nginx state=stopped
     # by default waits 300 seconds
@@ -10,6 +11,7 @@
 
 - hosts: webserver
   become: true
+  gather_facts : false
   tasks:
     - service: name=apache2 state=stopped
     - wait_for: port=80 state=stopped
@@ -25,12 +27,14 @@
 # Bring stack up
 - hosts: webserver
   become: true
+  gather_facts : false
   tasks:
     - service: name=apache2 state=started
     - wait_for: port=80
 
 - hosts: loadbalancer
   become: true
+  gather_facts : false
   tasks:
     - service: name=nginx state=started
     - wait_for: port=80

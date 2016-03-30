@@ -3,5 +3,6 @@
   hosts:  loadbalancer
   # ansible user should have sudo permissions
   become: true
+  gather_facts : false
   roles: 
     - nginx
